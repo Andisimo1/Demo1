@@ -29,10 +29,14 @@ pipeline {
             steps {
                 script {
                     sh """
+                    sh """
                     #!/bin/bash
-                    ssh -T -o StrictHostKeyChecking=no -i key.pem ubuntu@18.156.1.51 << EOF
+                    ssh -T -o StrictHostKeyChecking=no -i key.pem ubuntu@3.73.98.111 << EOF
+                    docker container stop demo
+                    docker container rm demo
+                    docker rmi -f andisimo1/firstdemo:latest
                     docker pull andisimo1/firstdemo:latest
-                    docker run -t -d -p 2222:5000 andisimo1/firstdemo:latest
+                    docker run -t -d -p 2222:5000 --name demo andisimo1/firstdemo:latest
                     exit 0
                     << EOF
                     """
