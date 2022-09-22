@@ -29,7 +29,6 @@ pipeline {
             steps {
                 script {
                     sh """
-                    sh """
                     #!/bin/bash
                     ssh -T -o StrictHostKeyChecking=no -i key.pem ubuntu@3.73.98.111 << EOF
                     docker container stop demo
